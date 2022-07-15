@@ -13,7 +13,7 @@
       ];
     };
     nixosConfigurations.raspberry-pi-sdImage = nixpkgs.lib.nixosSystem {
-      system = "aarch65";
+      system = "aarch64-linux";
       modules = [
         self.nixosModules.main-config
         nixos-hardware.nixosModules.raspberry-pi-4
