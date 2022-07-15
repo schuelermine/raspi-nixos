@@ -7,6 +7,7 @@
     nixosModules.main-config = import ./configuration.nix;
     nixosConfigurations.raspberry-pi = nixpkgs.lib.nixosSystem {
       system = "aarch65";
+      extraSpecialArgs = { inherit nixpkgs; };
       modules = [
         self.nixosModules.main-config
         nixos-hardware.nixosModules.raspberry-pi-4
@@ -14,6 +15,7 @@
     };
     nixosConfigurations.raspberry-pi-sdImage = nixpkgs.lib.nixosSystem {
       system = "aarch64-linux";
+      extraSpecialArgs = { inherit nixpkgs; };
       modules = [
         self.nixosModules.main-config
         nixos-hardware.nixosModules.raspberry-pi-4

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, nixpkgs, ... }: {
   fileSystems."/" = {
     device = "/dev/disk/by-label/NIXOS_SD";
     fsType = "ext4";
@@ -14,7 +14,7 @@
       isNormalUser = true;
       description = "Anselm Schüler";
       hashedPassword =
-        "$y$j9T$MggYbRbZoK.1WEW96K1el0$hcbo3SFFwDbvI5BPV4GdW2jWTAR1fMd56ssqeSgb8r5";
+        "$y$j9T$w4UFfIcumY8QU8eym.Pvy0$0uDwpo2jG7VwL8uXNi9S7sLUWpSvGGIkoqOo6UAD//2";
       extraGroups = [ "wheel" "networkmanager" "libvirtd" ];
       shell = pkgs.fish;
       openssh.authorizedKeys.keys = [
@@ -38,5 +38,20 @@
       displayManager.lightdm.enable = true;
       desktopManager.xfce.enable = true;
     };
+  };
+  system.stateVersion = "22.05";
+  nix = {
+    registry.nixpkgs.to = {
+  owner = "NixOS";
+  repo = "nixpkgs";
+  rev = nixpkgs.sourceInfo.rev;
+  type = "github";
+};
+nixPath = [ "nixpkgs=${nixpkgs}" ];
+    package = pkgs.nixUnstable;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+    settings = { auto-optimise-store = true; };
   };
 }
