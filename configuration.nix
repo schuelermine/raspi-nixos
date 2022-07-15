@@ -6,11 +6,6 @@
   networking = {
     hostName = "raspberry-pi";
     networkmanager.enable = true;
-    wireless = {
-      enable = true;
-      networks.jackocktagon.psk = "gorgonzola";
-      interfaces = [ "wlan0" ];
-    };
   };
   hardware.raspberry-pi."4".fkms-3d.enable = true;
   users = {
