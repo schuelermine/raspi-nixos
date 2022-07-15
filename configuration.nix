@@ -41,7 +41,7 @@
     xserver = {
       enable = true;
       displayManager.lightdm.enable = true;
-      desktopManager.xfcs.enable = true;
+      desktopManager.xfce.enable = true;
     };
   };
 }
